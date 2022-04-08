@@ -1,0 +1,89 @@
+<div class="Collapsible">
+        {%- if settings.product_content_collapse_1 -%}
+          <button type="button" class="label button_trigger collapsible-trigger1 collapsible-trigger-btn collapsible-trigger-btn--borders" aria-controls="Product-content-1-{{ section_id }}">
+            {{ pages[settings.product_content_1].title }}
+            {% comment %}{%- render 'collapsible-icons' -%}{% endcomment %}
+            <span class="Collapsible__Plus"></span>
+          </button>
+        {%- else -%}
+          <div class="label collapsible-trigger-btn collapsible-trigger-btn--borders">
+            {{ pages[settings.product_content_1].title }}
+          </div>
+        {%- endif -%}
+
+        <div id="Product-content-1-{{ section_id }}" class="collapsible-content{% unless settings.product_content_collapse_1 %} collapsible-content--expanded{% else %} collapsible-content--all1{% endunless %} open_wrap">
+          <div class="collapsible-content__inner rte open_inner">
+            {{ pages[settings.product_content_1].content }}
+          </div>
+        </div>
+        
+        <style>
+        .collapsibles-wrapper button {
+    letter-spacing: 0;
+    text-align: left!important;
+    font-weight: 700;
+    color: #606060;
+    border-left: 0;
+    border-right: 0;
+    padding-left: 0;
+    text-transform: capitalize;
+}
+
+.Collapsible__Plus {
+    position: absolute;
+    right: 0;
+    top: calc(50% - (11px / 2));
+    width: 11px;
+    height: 11px;
+}
+.Collapsible__Plus::before {
+    width: 11px;
+    height: 1px;
+    opacity: 1;
+}
+.Collapsible__Plus::before, .Collapsible__Plus::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    background-color: currentColor;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+.Collapsible__Plus::after {
+    width: 1px;
+    height: 11px;
+}
+.collapsible-trigger.is-open .Collapsible__Plus::before,
+
+.button_trigger.active .Collapsible__Plus::before
+ {
+    opacity: 0;
+}
+.collapsible-trigger.is-open .Collapsible__Plus::before, 
+.collapsible-trigger.is-open  .Collapsible__Plus::after,
+
+.button_trigger.active .Collapsible__Plus::before, 
+.button_trigger.active  .Collapsible__Plus::after
+ {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.Collapsible{
+	overflow: hidden;
+}
+.open_wrap {
+    display: block;
+    height: 0;
+    visibility: hidden;
+    transition: height 0.35s ease-in-out, visibility 0s ease-in-out 0.35s;
+    overflow: hidden;
+}
+.open_wrap.active {
+        visibility: visible;
+    transition: height 0.35s ease-in-out;
+    overflow: visible;
+   
+}
+        </style>
+        
